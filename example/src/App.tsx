@@ -1,18 +1,22 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-prevent-background';
+import { StyleSheet, View, Text, Button } from 'react-native';
+import PreventBackground from 'react-native-prevent-background';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const [isPrevent, setPrevent] = React.useState<boolean>(false);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text style={styles.text}>Sensitive content</Text>
+      <Button
+        onPress={() => {
+          setPrevent((prev) => !prev);
+        }}
+        title={`Prevent with condition: ${isPrevent ? 'on' : 'off'}`}
+      />
+
+      <PreventBackground block={isPrevent} />
     </View>
   );
 }
@@ -22,10 +26,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 10,
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  text: {
+    fontSize: 25,
+    fontWeight: 'bold',
   },
 });
