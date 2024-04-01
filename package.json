@@ -1,6 +1,6 @@
 {
   "name": "react-native-prevent-background",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple library for React Native that prevents displaying the app's current screen while in the background (suitable for apps that contain sensitive information)",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
